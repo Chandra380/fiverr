@@ -1,17 +1,7 @@
 import React from 'react'
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import CatCard from '../catCard/CatCard';
-import { cards } from '../../data';
 import './Slide.scss'
-
-const CustomRightArrow = ({ onClick, ...rest }) => {
-  const {
-    onMove,
-    carouselState: { currentSlide, deviceType }
-  } = rest;
-  return <button onClick={() => onClick()} />;
-};
 
 const responsive = {
     superLargeDesktop: {
@@ -24,23 +14,27 @@ const responsive = {
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
-      items: 4
+      items: 3
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
-      items: 4
+      items: 1
     }
 };
 
-const Slide = () => {
+const Slide = ({children}) => {
 
     return (
         <div className='slide'>
             <div className="container">
-                <Carousel responsive={responsive} >
-                    {cards.map(card=>(
-                        <CatCard item={card} key={card.id}/>
-                    ))}
+                <Carousel
+                  responsive={responsive}
+                  ssr={true} // means to render carousel on server-side.
+                  infinite={true}
+                  containerClass="carousel-container"
+                  itemClass="carousel-item-padding-40-px"
+                >
+                    {children}
                 </Carousel>
             </div>
         </div>

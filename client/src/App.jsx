@@ -9,6 +9,8 @@ import Message from './pages/message/Message'
 import Messages from './pages/messages/Messages'
 import MyGigs from './pages/myGigs/MyGigs'
 import Orders from './pages/orders/Orders'
+import Login from './pages/login/Login'
+import Register from './pages/register/Register'
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom'
 
 const App = () => {
@@ -21,6 +23,7 @@ const App = () => {
       </div>
     )
   }
+ 
   const router = createBrowserRouter([
     {
       path:'/',
@@ -56,9 +59,17 @@ const App = () => {
         },
         {
           path:'/message/:id',
-          element:<Message/>
+          element:<Message />
         },
       ]
+    },
+    {
+      path: "/register",
+      element: <Register />,
+    },
+    {
+      path: "/login",
+      element: <Login />,
     }
   ])
   return (
