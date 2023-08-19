@@ -12,14 +12,21 @@ import Orders from './pages/orders/Orders'
 import Login from './pages/login/Login'
 import Register from './pages/register/Register'
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom'
+import {
+  QueryClient,
+  QueryClientProvider,
+} from "@tanstack/react-query"
 
 const App = () => {
+  const queryClient = new QueryClient()
   const Layout = ()=>{
     return(
       <div className='app'>
-        <Navbar/>
-        <Outlet/>
-        <Footer/>
+        <QueryClientProvider client={queryClient}>
+          <Navbar/>
+          <Outlet/>
+          <Footer/>
+        </QueryClientProvider>
       </div>
     )
   }
